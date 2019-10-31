@@ -222,5 +222,24 @@ class ViewController: UIViewController, WCSessionDelegate  {
         self.hungerpok2value = self.hungerpok2value - 12
     }
     
+    @IBAction func hibernatePok1(_ sender: Any) {
+        hungerTimerpok1.invalidate()
+        healthTimerpok1.invalidate()
+        
+    }
+    @IBAction func HibernatePok2(_ sender: Any) {
+        hungerTimerpok2.invalidate()
+        healthTimerpok2.invalidate()
+        
+    }
+    @IBAction func wakePok1(_ sender: Any) {
+        hungerAction1()
+        healthAction1()
+        
+    }
+    @IBAction func wakePok2(_ sender: Any) {
+        hungerAction()
+        healthAction()
+    }
 }
 
