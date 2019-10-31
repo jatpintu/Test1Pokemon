@@ -12,10 +12,19 @@ import WatchConnectivity
 class ViewController: UIViewController, WCSessionDelegate  {
     
     var pokemonSelected : String = ""
-
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    var seconds = 60;
+    var timer = Timer();
+    @objc func timerAction() {
+        self.seconds -= 1
+        timeLabel.text = "\(self.seconds)"
+      }
+    
     @IBOutlet weak var outputLabel: UITextView!
     @IBOutlet weak var pokemon1: UILabel!
     @IBOutlet weak var pokemon2: UILabel!
+    
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         
@@ -40,6 +49,7 @@ class ViewController: UIViewController, WCSessionDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
         
         // 1. Check if phone supports WCSessions
         print("view loaded")
@@ -64,21 +74,6 @@ class ViewController: UIViewController, WCSessionDelegate  {
         super.didReceiveMemoryWarning()
     }
 
-    @IBAction func sendMessageButtonPressed(_ sender: Any) {
-        
-        outputLabel.insertText("\nTrying to send message to watch")
-        
-//        if (WCSession.default.isReachable) {
-//            let message = ["course": "MADT"]
-//            WCSession.default.sendMessage(message, replyHandler: nil)
-//            outputLabel.insertText("\nMessage sent to watch")
-//            print("Message sent to watch")
-//        }
-//        else {
-//            print("PHONE: Cannot reach watch")
-//            outputLabel.insertText("\nCannot reach watch")
-//        }
-    }
     
     @IBAction func pokemonButtonPressed(_ sender: Any) {
         print("You pressed the pokemon button")

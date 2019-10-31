@@ -43,7 +43,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         // Message from phone comes in this format: ["course":"MADT"]
 //        let messageBody = message["course"] as! String
         self.pokemonSelected = message["pokemon"] as! String
-       
+        self.giveNameLabel.setHidden(false)
+        self.textField.setHidden(false)
         print(self.pokemonSelected)
         
     }
