@@ -21,6 +21,8 @@ class ViewController: UIViewController, WCSessionDelegate  {
     @IBOutlet weak var hungrypok2: UILabel!
     @IBOutlet weak var healthpok1: UILabel!
     @IBOutlet weak var healthpok2: UILabel!
+    @IBOutlet weak var poke1Status: UILabel!
+    @IBOutlet weak var poke2Status: UILabel!
     
     
     var seconds = 0;
@@ -152,17 +154,23 @@ class ViewController: UIViewController, WCSessionDelegate  {
     @objc func hungerAction1() {
       if(self.hungerpok1value<100){
       self.hungerpok1value += 10
+      poke1Status.text = "Alive"
       hungrypok1.text = "\(self.hungerpok1value)"
       healthpok1.text = "\(self.healthpok1value)"
+    
         if(self.hungerpok1value >= 80){
              healthTimerpok1 = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(healthAction1), userInfo: nil, repeats: true)
              healthTimerpok2 = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(healthAction), userInfo: nil, repeats: true)
          }
+        
+       
       }
     }
     @objc func hungerAction() {
       if(self.hungerpok2value<100){
       self.hungerpok2value += 10
+        self.poke2Status.text = "Alive"
+        
       hungrypok2.text = "\(self.hungerpok2value)"
       healthpok2.text = "\(self.healthpok2value)"
 //         if(self.hungerpok2value >= 80){
@@ -176,14 +184,26 @@ class ViewController: UIViewController, WCSessionDelegate  {
         if(self.healthpok1value > 0){
                         self.healthpok1value -= 5
                         self.healthpok1.text = "\(self.healthpok1value)"
-        }
+           
+               
+           
+        } else if(self.healthpok1value == 0){
+                   self.poke1Status.text = "Dead"
+               }
+        
            }
         
     @objc func healthAction() {
         if(self.healthpok2value > 0){
                         self.healthpok2value -= 5
                         self.healthpok2.text = "\(self.healthpok2value)"
-           }
+           
+                
+            
+        }
+        else if(self.healthpok2value == 0){
+            self.poke2Status.text = "Dead"
+        }
     }
 //    public func playGame(){
 //
