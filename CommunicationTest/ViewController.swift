@@ -30,6 +30,8 @@ class ViewController: UIViewController, WCSessionDelegate  {
     var timer = Timer();
     var hungerTimerpok1 = Timer();
     var hungerTimerpok2 = Timer();
+    var healthTimerpok1 = Timer();
+    var healthTimerpok2 = Timer();
     var hungerpok1value = 0;
     var hungerpok2value = 0;
     var healthpok1value = 100;
@@ -152,9 +154,9 @@ class ViewController: UIViewController, WCSessionDelegate  {
       self.hungerpok1value += 10
       hungrypok1.text = "\(self.hungerpok1value)"
       healthpok1.text = "\(self.healthpok1value)"
-        if(self.hungerpok1value > 80){
-            self.healthpok1value -= 5
-            self.healthpok1.text = "\(self.healthpok1value)"
+        if(self.hungerpok1value >= 80){
+             healthTimerpok1 = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(healthAction1), userInfo: nil, repeats: true)
+             healthTimerpok2 = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(healthAction), userInfo: nil, repeats: true)
          }
       }
     }
@@ -163,13 +165,26 @@ class ViewController: UIViewController, WCSessionDelegate  {
       self.hungerpok2value += 10
       hungrypok2.text = "\(self.hungerpok2value)"
       healthpok2.text = "\(self.healthpok2value)"
-        if(self.hungerpok2value > 80){
-            self.healthpok2value -= 5
-            self.healthpok2.text = "\(self.healthpok2value)"
-        }
+//         if(self.hungerpok2value >= 80){
+            
+//            healthTimerpok1 = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(healthAction1), userInfo: nil, repeats: true)
+//            healthTimerpok2 = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(healthAction), userInfo: nil, repeats: true)
+//        }
       }
     }
-    
+    @objc func healthAction1() {
+        if(self.healthpok1value > 0){
+                        self.healthpok1value -= 5
+                        self.healthpok1.text = "\(self.healthpok1value)"
+        }
+           }
+        
+    @objc func healthAction() {
+        if(self.healthpok2value > 0){
+                        self.healthpok2value -= 5
+                        self.healthpok2.text = "\(self.healthpok2value)"
+           }
+    }
 //    public func playGame(){
 //
 ////        self.hungrypok1.text = "\(self.hungerpok1value)"
@@ -179,7 +194,13 @@ class ViewController: UIViewController, WCSessionDelegate  {
 //
 //    }
    
+    @IBAction func feedPok1(_ sender: Any) {
+        self.hungerpok1value = self.hungerpok1value - 12
+    }
     
+    @IBAction func feedPok2(_ sender: Any) {
+        self.hungerpok2value = self.hungerpok2value - 12
+    }
     
 }
 
