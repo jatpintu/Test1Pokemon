@@ -21,29 +21,19 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBOutlet var nameLabel: WKInterfaceLabel!
 
     @IBOutlet var outputLabel: WKInterfaceLabel!
-    @IBOutlet var giveNameLabel: WKInterfaceLabel!
     @IBOutlet var textField: WKInterfaceTextField!
     
     var pokemonName : String = ""
     var pokemonSelected : String = ""
     
-    
-    
-    // MARK: Delegate functions
-    // ---------------------
 
-    // Default function, required by the WCSessionDelegate on the Watch side
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         //@TODO
     }
-    
-    // 3. Get messages from PHONE
+
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         print("WATCH: Got message from Phone")
-        // Message from phone comes in this format: ["course":"MADT"]
-//        let messageBody = message["course"] as! String
         self.pokemonSelected = message["pokemon"] as! String
-        self.giveNameLabel.setHidden(false)
         self.textField.setHidden(false)
         print(self.pokemonSelected)
         
@@ -64,7 +54,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     override func willActivate() {
         super.willActivate()
         
-        self.giveNameLabel.setHidden(true)
         self.textField.setHidden(true)
     }
     
@@ -74,29 +63,20 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     @IBAction func namePokemon(_ value: NSString?) {
         self.pokemonName = value! as String
-        self.giveNameLabel.setText(pokemonName)
     }
     
     //send a message to the phone
     @IBAction func buttonPressed() {
         
-        if WCSession.default.isReachable {
-            print("Attempting to send message to phone")
-            self.messageLabel.setText("Sending msg to watch")
-            WCSession.default.sendMessage(
-                ["name" : "Pritesh"],
-                replyHandler: {
-                    (_ replyMessage: [String: Any]) in
-                    print("Message sent, put something here if u are expecting a reply from the phone")
-                    self.messageLabel.setText("Got reply from phone")
-            }, errorHandler: { (error) in
-                print("Error while sending message: \(error)")
-                self.messageLabel.setText("Error sending message")
-            })
+        if (WCSession.default.isReachable == true)
+        {
+            let pokmessage = ["pokename":self.pokemonName,"pokselected":self.pokemonSelected] as [String : Any]
+            WCSession.default.sendMessage(pokmessage, replyHandler:nil)
+            print("Message Sent to Phone")
         }
-        else {
-            print("Phone is not reachable")
-            self.messageLabel.setText("Cannot reach phone")
+        else
+        {
+            print("Message was not sent to Phone")
         }
     }
     

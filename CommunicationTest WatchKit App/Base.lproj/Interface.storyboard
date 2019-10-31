@@ -12,6 +12,13 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="CommunicationTest_WatchKit_App" customModuleProvider="target">
                     <items>
+                        <button width="133" height="33" alignment="left" title="Send Name" id="fzB-f5-y2S">
+                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="font" type="system" pointSize="10"/>
+                            <connections>
+                                <action selector="buttonPressed" destination="AgC-eL-Hgc" id="EFk-bs-nx7"/>
+                            </connections>
+                        </button>
                         <group width="136" height="39" alignment="left" id="PEo-iJ-VR0">
                             <items>
                                 <textField width="1" alignment="left" placeholder="Insert Name" id="12x-vl-CFa">
@@ -21,14 +28,6 @@
                                 </textField>
                             </items>
                         </group>
-                        <label width="136" height="33" alignment="left" text="Give Name" textAlignment="center" id="cEn-ET-nA4"/>
-                        <imageView width="47" height="47" alignment="center" image="pokeball" id="RxI-YZ-AgM"/>
-                        <label height="20" alignment="left" text="Label" numberOfLines="2" id="PMJ-75-bao">
-                            <fontDescription key="font" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
-                        </label>
-                        <label alignment="center" text="Albert is hungry" id="QdJ-Fj-LrR">
-                            <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
-                        </label>
                         <group width="1" alignment="left" id="zVJ-eg-oyl">
                             <items>
                                 <button alignment="center" title="N" id="sSF-lA-oJl">
@@ -59,13 +58,6 @@
                                         <action selector="hibernateButtonPressed" destination="AgC-eL-Hgc" id="lo9-VG-AtJ"/>
                                     </connections>
                                 </button>
-                                <button width="22" height="37" alignment="left" title="Push " id="fzB-f5-y2S">
-                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <fontDescription key="font" type="system" pointSize="10"/>
-                                    <connections>
-                                        <action selector="buttonPressed" destination="AgC-eL-Hgc" id="EFk-bs-nx7"/>
-                                    </connections>
-                                </button>
                             </items>
                         </group>
                         <label alignment="center" text="HP: 100   Hunger: 0" id="Pt1-1p-5yN">
@@ -73,16 +65,12 @@
                         </label>
                     </items>
                     <connections>
-                        <outlet property="giveNameLabel" destination="cEn-ET-nA4" id="fBo-rC-1Ia"/>
-                        <outlet property="messageLabel" destination="PMJ-75-bao" id="X1T-aZ-hg2"/>
-                        <outlet property="nameLabel" destination="QdJ-Fj-LrR" id="HAA-SN-3Fj"/>
                         <outlet property="outputLabel" destination="Pt1-1p-5yN" id="Ojk-s6-fYf"/>
-                        <outlet property="pokemonImageView" destination="RxI-YZ-AgM" id="Cu6-PZ-z19"/>
                         <outlet property="textField" destination="12x-vl-CFa" id="viT-6I-BXK"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="555" y="25.5"/>
+            <point key="canvasLocation" x="555" y="23.5"/>
         </scene>
         <!--Screen2 Sample-->
         <scene sceneID="rSw-iR-0SS">
@@ -114,7 +102,4 @@
             <point key="canvasLocation" x="562" y="382"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="pokeball" width="64" height="64"/>
-    </resources>
 </document>
